@@ -7,7 +7,7 @@ author:
   - "Junhao Wang"
 date: "26 Oct 2020"
 pdflink: ""
-bgimg: "images/Werombi_Bushfire.jpg"
+bgimg: "images/gettyimages-74266158-1561586869.jpg"
 output:
   xaringan::moon_reader:
     css:
@@ -250,12 +250,91 @@ if (!file.exists("images/origin.png")){
 <img src="images/origin.png" width = "100%"/>
 
 ---
-# 🤢 Attempt 1 😱
+# 🤢 Attempt 1 - Weihao's work 😱
 
 ```{r}
-# plot 1
+if (!file.exists("images/Patrick_ugly_plot.png")){
+  set.seed(10086)
+
+  speed_plot <- ggplot(filter(dist_data, !is.na(speed))) +
+    geom_smooth(aes(x = year, y = speed),
+                method = "loess", se = FALSE, color = "navyblue", size = 0.5, span = 0.05) +
+    geom_point(aes(x = year,
+                   y = speed,
+                   size = bicycle_tech,
+                   shape = bicycle_tech,
+                   col = as.numeric(1:98))) +
+  
+    # geom_vline(data = cuts , aes(xintercept=vals), colour = "tomato", alpha = 0.5, size = 0.5) +
+    # geom_text(mapping = aes(x = vals,
+    #                         y = 0,
+    #                         label = Ref,
+    #                         hjust = 0,
+    #                         vjust = -0.5,
+    #                         angle = 90),
+    #           data = cuts,
+    #           size = 3) + 
+    scale_x_continuous(breaks = round(rnorm(30, mean = 1960, sd = 20),0), minor_breaks =round(rnorm(300, mean = 1960, sd = 20),1)) +
+    scale_y_continuous(breaks=round(rnorm(30, mean = 35, sd = 10),0), minor_breaks = round(rnorm(100, mean = 35, sd = 10),1))+
+    theme_minimal() +
+    theme(legend.position = "right") +
+    labs(title = "Speed of the winners through the history (1903-2019)",
+         subtitle = "Observing the association of speed with bicycle technology and doping usage",
+         x = "Year",
+         y = "Speed (km/hour)") +
+    coord_flip() +
+    guides(col = F) 
+  
+  library(rayshader)
+  library(rayrender)
+  
+  plot_gg(speed_plot, height = 5, width = 8, theta=0, phi=60, windowsize = c(800, 600), zoom = 0.55)
+  
+  render_snapshot(filename = "images/Patrick_ugly_plot.png")
+}
+
 ```
 
+
+<img src="images/Patrick_ugly_plot.png" width = "100%"/>
+
+---
+# 🤢 Attempt 1 - Weihao's work 😱
+## Code
+
+.code1[
+```{r eval = FALSE, echo=TRUE}
+  set.seed(10086)
+
+  speed_plot <- ggplot(filter(dist_data, !is.na(speed))) +
+    geom_smooth(aes(x = year, y = speed),
+                method = "loess", se = FALSE, color = "navyblue", size = 0.5, span = 0.05) +
+    geom_point(aes(x = year,
+                   y = speed,
+                   size = bicycle_tech,
+                   shape = bicycle_tech,
+                   col = as.numeric(1:98))) +
+    scale_x_continuous(breaks = round(rnorm(30, mean = 1960, sd = 20), 0), 
+                       minor_breaks = round(rnorm(300, mean = 1960, sd = 20), 1)) +
+    scale_y_continuous(breaks = round(rnorm(30, mean = 35, sd = 10), 0), 
+                       minor_breaks = round(rnorm(100, mean = 35, sd = 10), 1))+
+    theme_minimal() +
+    theme(legend.position = "right") +
+    labs(title = "Speed of the winners through the history (1903-2019)",
+         subtitle = "Observing the association of speed with bicycle technology and doping usage",
+         x = "Year",
+         y = "Speed (km/hour)") +
+    coord_flip() +
+    guides(col = F) 
+  
+  library(rayshader)
+  library(rayrender)
+  
+  plot_gg(speed_plot, height = 5, width = 8, theta=0, phi=60, windowsize = c(800, 600), zoom = 0.55)
+  
+  render_snapshot(filename = "images/Patrick_ugly_plot.png")
+```
+]
 
 ---
 # 🤢 Attempt 2 😱

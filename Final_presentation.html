@@ -44,7 +44,7 @@ class: middle center hide-slide-number
 ---
 
 
-background-image: url(images/Werombi_Bushfire.jpg)
+background-image: url(images/gettyimages-74266158-1561586869.jpg)
 background-size: cover
 class: hide-slide-number split-70 title-slide
 count: false
@@ -114,10 +114,51 @@ count: false
 &lt;img src="images/origin.png" width = "100%"/&gt;
 
 ---
-# 🤢 Attempt 1 😱
+# 🤢 Attempt 1 - Weihao's work 😱
 
 
 
+
+&lt;img src="images/Patrick_ugly_plot.png" width = "100%"/&gt;
+
+---
+# 🤢 Attempt 1 - Weihao's work 😱
+## Code
+
+.code1[
+
+```r
+  set.seed(10086)
+
+  speed_plot &lt;- ggplot(filter(dist_data, !is.na(speed))) +
+    geom_smooth(aes(x = year, y = speed),
+                method = "loess", se = FALSE, color = "navyblue", size = 0.5, span = 0.05) +
+    geom_point(aes(x = year,
+                   y = speed,
+                   size = bicycle_tech,
+                   shape = bicycle_tech,
+                   col = as.numeric(1:98))) +
+    scale_x_continuous(breaks = round(rnorm(30, mean = 1960, sd = 20), 0), 
+                       minor_breaks = round(rnorm(300, mean = 1960, sd = 20), 1)) +
+    scale_y_continuous(breaks = round(rnorm(30, mean = 35, sd = 10), 0), 
+                       minor_breaks = round(rnorm(100, mean = 35, sd = 10), 1))+
+    theme_minimal() +
+    theme(legend.position = "right") +
+    labs(title = "Speed of the winners through the history (1903-2019)",
+         subtitle = "Observing the association of speed with bicycle technology and doping usage",
+         x = "Year",
+         y = "Speed (km/hour)") +
+    coord_flip() +
+    guides(col = F) 
+  
+  library(rayshader)
+  library(rayrender)
+  
+  plot_gg(speed_plot, height = 5, width = 8, theta=0, phi=60, windowsize = c(800, 600), zoom = 0.55)
+  
+  render_snapshot(filename = "images/Patrick_ugly_plot.png")
+```
+]
 
 ---
 # 🤢 Attempt 2 😱
@@ -132,7 +173,7 @@ count: false
 ---
 
 
-background-image: url(images/Werombi_Bushfire.jpg)
+background-image: url(images/gettyimages-74266158-1561586869.jpg)
 background-size: cover
 class: hide-slide-number split-70
 count: false

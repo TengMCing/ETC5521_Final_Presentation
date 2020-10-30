@@ -245,3 +245,7 @@ th, td {
 .font_my_2 {
   font-size: 16pt;
 }
+
+.code1 .remark-code {
+  font-size: 10pt;
+}
