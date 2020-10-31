@@ -52,8 +52,7 @@ Sys.setlocale("LC_ALL","English")
 ```
 
 ---
-# 🚴
-♂️ Good plot 💯
+# 🚴️ Good plot 💯
 
 ```{r}
 stage_clean <- read_csv("data/stage_data.csv")
