@@ -52,7 +52,8 @@ Sys.setlocale("LC_ALL","English")
 ```
 
 ---
-# 🚴‍♂️ Good plot 💯
+# 🚴
+♂️ Good plot 💯
 
 ```{r}
 stage_clean <- read_csv("data/stage_data.csv")
@@ -341,8 +342,106 @@ if (!file.exists("images/Patrick_ugly_plot.png")){
 
 ```{r}
 # plot 2
+if (!file.exists("images/Joyce_ugly_plot.png")){
+speed_plot2 <- 
+  ggplot(filter(dist_data, !is.na(speed)), aes(x = year, y = speed)) +
+  geom_bin2d(aes(color = bicycle_tech), bins = 12) +
+  geom_segment(aes(x = 1990, y = 50, xend = 1990, yend = min(speed)),
+               color = "yellow",
+                arrow = arrow(length = unit(0.25, "cm"))) +
+  geom_label(aes(x = 1983, y = 25, label = "Doping widespread, no test"), 
+           hjust = 0, 
+             vjust = 0.5, 
+             colour = "yellow", 
+             fill = "#FFFDFE", 
+             label.size = NA, 
+             size = 3) +
+  geom_segment(aes(x = 2000, y = 50, xend = 2000, yend = min(speed)),
+               color = "orange",
+                arrow = arrow(length = unit(0.25, "cm"))) +
+  geom_label(aes(x = 1994, y = 49, label = "Doping tested"), 
+             hjust = 0, 
+             vjust = 0.5, 
+             colour = "orange", 
+             fill = "#B8CAD1", 
+             label.size = NA, 
+             size = 3) + 
+  geom_segment(aes(x = 2008, y = 50, xend = 2008, yend = min(speed)),
+               color = "#EE0405",
+                arrow = arrow(length = unit(0.25, "cm"))) +
+  geom_label(aes(x = 2008, y = 45, label = "Blood passport usage"), 
+             hjust = 0, 
+             vjust = 0.5, 
+             colour = "#EE0405", 
+             fill = "#000000", 
+             label.size = NA, 
+             size = 3) +   
+    theme(panel.grid.major = element_line(colour="#2D4046", size = (0.3)),
+                 panel.grid.minor = element_line(size = (0.2), colour="#B8CAD1")) +
+    theme(panel.background = element_rect(fill = "#FFFDFE", colour = "#031E49", size = 2),
+                legend.key = element_rect(fill = "#FFFDFE"),
+                 legend.background = (element_rect(colour= "transparent", fill = "#B8CAD1"))) +  
+    labs(x = "Year",
+         y = "Speed (km/hour)") +
+  coord_polar("y", start = 10) 
+ ggsave(filename = "images/Joyce_ugly_plot.png", dpi = 600, height = 5.3, width = 8, plot = speed_plot2)
+}   
+
 ```
 
+<img src="images/Joyce_ugly_plot.png" width = "100%"/>
+
+---
+# 🤢 Attempt 2 - Joyce's work 😱
+## Code
+
+.code2[
+```{r eval = FALSE, echo=TRUE}
+speed_plot2 <- 
+  ggplot(filter(dist_data, !is.na(speed)), aes(x = year, y = speed)) +
+  geom_bin2d(aes(color = bicycle_tech), bins = 12) +
+  geom_segment(aes(x = 1990, y = 50, xend = 1990, yend = min(speed)),
+               color = "yellow",
+                arrow = arrow(length = unit(0.25, "cm"))) +
+  geom_label(aes(x = 1983, y = 25, label = "Doping widespread, no test"), 
+           hjust = 0, 
+             vjust = 0.5, 
+             colour = "yellow", 
+             fill = "#FFFDFE", 
+             label.size = NA, 
+             size = 3) +
+  geom_segment(aes(x = 2000, y = 50, xend = 2000, yend = min(speed)),
+               color = "orange",
+                arrow = arrow(length = unit(0.25, "cm"))) +
+  geom_label(aes(x = 1994, y = 49, label = "Doping tested"), 
+             hjust = 0, 
+             vjust = 0.5, 
+             colour = "orange", 
+             fill = "#B8CAD1", 
+             label.size = NA, 
+             size = 3) + 
+  geom_segment(aes(x = 2008, y = 50, xend = 2008, yend = min(speed)),
+               color = "#EE0405",
+                arrow = arrow(length = unit(0.25, "cm"))) +
+  geom_label(aes(x = 2008, y = 45, label = "Blood passport usage"), 
+             hjust = 0, 
+             vjust = 0.5, 
+             colour = "#EE0405", 
+             fill = "#000000", 
+             label.size = NA, 
+             size = 3) +   
+    theme(panel.grid.major = element_line(colour="#2D4046", size = (0.3)),
+                 panel.grid.minor = element_line(size = (0.2), colour="#B8CAD1")) +
+    theme(panel.background = element_rect(fill = "#FFFDFE", colour = "#031E49", size = 2),
+                legend.key = element_rect(fill = "#FFFDFE"),
+                 legend.background = (element_rect(colour= "transparent", fill = "#B8CAD1"))) +  
+    labs(x = "Year",
+         y = "Speed (km/hour)") +
+  coord_polar("y", start = 10) 
+ ggsave(filename = "images/Joyce_ugly_plot.png", dpi = 600, height = 5.3, width = 8, plot = speed_plot2)
+
+```
+]
 ---
 # 🤢 Attempt 3 😱
 
