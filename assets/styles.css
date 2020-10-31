@@ -249,3 +249,7 @@ th, td {
 .code1 .remark-code {
   font-size: 10pt;
 }
+
+.code2 .remark-code {
+font-size: 7pt;
+}

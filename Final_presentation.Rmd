@@ -439,9 +439,9 @@ speed_plot2 <-
          y = "Speed (km/hour)") +
   coord_polar("y", start = 10) 
  ggsave(filename = "images/Joyce_ugly_plot.png", dpi = 600, height = 5.3, width = 8, plot = speed_plot2)
-
 ```
 ]
+
 ---
 # 🤢 Attempt 3 😱
 
