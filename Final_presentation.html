@@ -220,58 +220,59 @@ speed_plot2 &lt;-
 ]
 
 ---
-# 🤢 Attempt 3 😱
+# 🤢 Attempt 3 - Junhao's work😱
 
 
+&lt;img src="images/Junhao_ugly_plot.png" width = "100%"/&gt;
 
 ---
+# 🤢 Attempt 3 Junhao's work😱
+## Code
 
 
-background-image: url(images/gettyimages-74266158-1561586869.jpg)
-background-size: cover
-class: hide-slide-number split-70
-count: false
+.code3[
 
-.column.shade_black[.content[
-
-&lt;br&gt;&lt;br&gt;
-
-## Acknowledgements
-
-Slides produced using [Rmarkdown](https://github.com/rstudio/rmarkdown) with [xaringan](https://github.com/yihui/xaringan) styling. Raw files for slides are available on 
-
-[Github.com/TengMCing/ETC5521_Final_Presentation](https://github.com/TengMCing/ETC5521_Final_Presentation)
-
-# Questions?
-
-
-&lt;br&gt; 
-&lt;a rel="license" href="https://www.gnu.org/licenses/gpl-3.0.en.html"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://www.gnu.org/graphics/gplv3-with-text-84x42.png" /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;GNU General Public License v3.0&lt;/a&gt;.
-
-.bottom_abs.width100[
-
-Author: Weihao Li, Joyce Lee, Junhao Wang
-
-&lt;!-- <span>&lt;i class="fas  fa-envelope faa-float animated "&gt;&lt;/i&gt;</span>   --&gt;
-
+```r
+  image &lt;- png::readPNG("images/large.png")
+  speed_plot3 &lt;- ggplot(filter(dist_data, !is.na(speed))) +
+     annotation_custom(rasterGrob(image, 
+                               width = unit(1,"npc"), 
+                               height = unit(1,"npc")), 
+                               -Inf, Inf, -Inf, Inf) +
+    geom_point(aes(x = year,
+                   y = speed,
+                   colour = speed)) +
+    geom_smooth(aes(x = year, y = speed),
+                method = "loess", se = FALSE, color = "steelblue", alpha = 0.5, size = 3) +
+    geom_vline(data = cuts , aes(xintercept=vals), colour = "tomato", alpha = 0.5, size = 0.5) +
+    geom_text(mapping = aes(x = vals,
+                            y = 0,
+                            label = Ref,
+                            hjust = 0,
+                            vjust = -0.5,
+                            angle = 90),
+              data = cuts,
+              size = 3) + 
+    scale_x_continuous(breaks=seq(1900, 2020, 5)) +
+    scale_y_continuous(breaks=seq(20, 50, 5))+
+    theme_classic() +
+    theme(text = element_text(size = 10),
+          legend.position = "bottom") +
+    labs(title = "Speed of the winners through the history (1903-2019)",
+         subtitle = "Observing the association of speed with bicycle technology and doping usage",
+         x = "Year",
+         y = "Speed (km/hour)",
+         colour = "Bicycle technology") +
+    guides(colour=guide_legend(nrow=2,byrow=TRUE))
+    
+  speed_plot3 &lt;- ggMarginal(speed_plot3, margins = 'y', size=4, type = "density", 
+             fill = "steelblue", 
+             color = "steelblue", 
+             alpha = 0.4)
+  
+  ggsave(filename = "images/Junhao_ugly_plot.png", dpi = 600, height = 5.3, width = 8, plot = speed_plot3)
+```
 ]
-
-
-]]
-
-
-
-&lt;div class="column transition monash-m-new delay-1s" style="clip-path:url(#swipe__clip-path);"&gt;
-&lt;div class="background-image" style="background-image:url('images/large.png');background-position: center;background-size:cover;margin-left:3px;"&gt;
-&lt;svg class="clip-svg absolute"&gt;
-&lt;defs&gt;
-&lt;clipPath id="swipe__clip-path" clipPathUnits="objectBoundingBox"&gt;
-&lt;polygon points="0.5745 0, 0.5 0.33, 0.42 0, 0 0, 0 1, 0.27 1, 0.27 0.59, 0.37 1, 0.634 1, 0.736 0.59, 0.736 1, 1 1, 1 0, 0.5745 0" /&gt;
-&lt;/clipPath&gt;
-&lt;/defs&gt;	
-&lt;/svg&gt;
-&lt;/div&gt;
-&lt;/div&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="libs/remark-latest.min.js"></script>
