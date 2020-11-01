@@ -539,4 +539,10 @@ if (!file.exists("images/Junhao_ugly_plot.png")){
 ```
 ]
 
+---
+```{r endslide, child = "components/endslide.Rmd"}
+
+```
+
+---
 
